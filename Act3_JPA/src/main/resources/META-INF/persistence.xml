@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.1" xmlns="http://xmlns.jcp.org/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://xmlns.jcp.org/xml/ns/persistence http://xmlns.jcp.org/xml/ns/persistence/persistence_2_1.xsd">
+	<persistence-unit name="act3_JPA.Elena" transaction-type="RESOURCE_LOCAL">
+	
+	<!-- estas son las clases que queremos que sean leidas por JPA.
+		 es importante el dato de "name", el nombre de la unidad de persistencia 
+		 este dato se lo tenemos que dar posteriormente cuando creemos el 
+		 EntityManagerFactory -->
+		<class>modelo.entidad.Autor</class>
+		<class>modelo.entidad.Libro</class>
+		<class>modelo.entidad.Libreria</class>
+		<class>modelo.entidad.Editorial</class>
+		
+		<properties>
+		<!-- propiedades importantes que debe conocer JPA:
+		      el driver de conexión, la url y el usuario y contraseña si la hubiese -->
+			<property name="javax.persistence.jdbc.driver" value="com.mysql.cj.jdbc.Driver"/>
+			<property name="javax.persistence.jdbc.url" value="jdbc:mysql://localhost:3306/3_jpa"/>
+			<property name="javax.persistence.jdbc.user" value="root"/>
+		
+		<!-- este es el comportamiento que queremos que tenga la base de datos. Aquí elegimos que cada vez que se 
+		     ejecute solo actualice la BBDD, se ha hecho porque para las consultas a la BBDD se hacen desde
+		     otra clase diferente al que se crean los datos y esto conlleva a que se borre y te devuelva null -->
+			<property name="javax.persistence.schema-generation.database.action" value="update"/>
+						 
+		<!-- vamos a trabajar con las implementaciones de Hibernate -->
+			<property name = "hibernate.show_sql" value = "true" />
+			<property name = "hibernate.dialect" value = "org.hibernate.dialect.MySQL8Dialect" />
+			
+
+		</properties>
+	</persistence-unit>
+</persistence>
